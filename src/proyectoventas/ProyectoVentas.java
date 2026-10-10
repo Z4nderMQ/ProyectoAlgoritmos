@@ -30,6 +30,7 @@ public class ProyectoVentas {
         double efectivo = 0;
         double cambio = 0;
         
+        
         //Inicio del programa
         do{
         //Menu del programa
@@ -67,14 +68,26 @@ public class ProyectoVentas {
                         
                         System.out.println("Codigo del producto:");
                         codigoProd = tc.nextInt();
+                        
                         //limpieza de buffer 
                         tc.nextLine();
+                        
                         System.out.println("Nombre del producto:");
                         nombreProd = tc.nextLine();
+                        
                         System.out.println("Precio del producto:");
                         precioProd = tc.nextDouble();
+                        while (precioProd <= 0){
+                            System.out.println("El precio ingresado no es valido, ingreselo nuevamente:");
+                            precioProd = tc.nextDouble();
+                        }
+                        
                         System.out.println("Unidades del producto:");
                         unidadesProd = tc.nextInt();
+                        while (unidadesProd <= 0){
+                            System.out.println("La cantidad no es valida, ingresela nuevamente:");
+                            unidadesProd = tc.nextInt();
+                        }
                         
                         //Calcular los subtotales
                         subtotalProd = precioProd * unidadesProd;
@@ -121,6 +134,8 @@ public class ProyectoVentas {
                             
                             //calculo del cambio
                             cambio = efectivo - total;
+                            System.out.println("El cambio a entregar son: Q." + cambio);
+                            
                             break;
                         case 2://Pago con tarjeta
                             total = total;
