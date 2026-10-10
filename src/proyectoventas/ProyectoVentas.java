@@ -21,6 +21,12 @@ public class ProyectoVentas {
         String nombreProd;
         double precioProd = 0;
         int unidadesProd = 0;
+        int pagosEfectivo = 0;
+        int pagosTarjeta = 0;
+        int pagosTransferencia = 0;
+        int pagadoCon = 0;
+        int aprobacion = 0;
+        String pagoMostrado;
         double subtotalProd;
         double descuento = 0;
         double monto;
@@ -135,13 +141,46 @@ public class ProyectoVentas {
                             //calculo del cambio
                             cambio = efectivo - total;
                             System.out.println("El cambio a entregar son: Q." + cambio);
+                            //aumento del contador
+                            pagosEfectivo = pagosEfectivo + 1;
+                            
+                            pagadoCon = 1;
                             
                             break;
                         case 2://Pago con tarjeta
-                            total = total;
+                            System.out.println("Inserte tarjeta en la pinpad");
+                            System.out.println("...");
+                            System.out.println("...");
+                            System.out.println("...");
+                            System.out.println("La transaccion fue aprovada?");
+                            System.out.println("1. Si");
+                            System.out.println("2. No");
+                            aprobacion = tc.nextInt();
+                            if (aprobacion == 1) {
+                                pagosTarjeta = pagosTarjeta + 1;
+                                pagadoCon = 2;
+                                pagoMostrado = "Tarjeta";
+                            } else {
+                                System.out.println("Tarjeta rechazada. \n"
+                                        + "Intente de nuevo");
+                            }
                             break;
                         case 3:
-                            total = total;
+                            System.out.println("La trasnsferencia fue recibida?");
+                            System.out.println("1. Si");
+                            System.out.println("2. No");
+                            aprobacion = tc.nextInt();
+                            if (aprobacion == 1) {
+                                pagosTransferencia = pagosTransferencia + 1;
+                                pagadoCon = 3;
+                                pagoMostrado = "Transferencia";
+                            }else{
+                                System.out.println("Error de transferencia. \n"
+                                        + "Intente denuevo");
+                            }
+                            break;
+                        default:
+                            System.out.println("Ingrese una opcion valida");
                             break;
                     }
                     //resumen
