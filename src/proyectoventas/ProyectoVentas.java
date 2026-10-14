@@ -57,6 +57,8 @@ public class ProyectoVentas {
         //opcion elegida 
             switch (op){
                 case 1:
+                    pagadoCon = 0;
+                    pagoMostrado = " ";
         System.out.println("====================================================");
                     System.out.println("Registre la venta.");
                     //Solicitar cantidad de productos
@@ -70,9 +72,10 @@ public class ProyectoVentas {
                         }
                     }while (cantidadProd <= 0);
                     
-                    //Ingreso de informacion de los productos
+                    //Ingreso de informacion de los productos en ciclo for
         System.out.println("====================================================");
                     double subtotalVenta = 0;
+                    int productosVenta = 0;
                     for (int i = 1; i <= cantidadProd; i++){
         System.out.println("====================================================");
                         System.out.println("Ingrese los datos requeridos:");
@@ -103,6 +106,7 @@ public class ProyectoVentas {
                         //Calcular los subtotales
                         subtotalProd = precioProd * unidadesProd;
                         subtotalVenta = subtotalVenta + subtotalProd;
+                        productosVenta = productosVenta + unidadesProd;
                     }
                     //mostrar los resultados
         System.out.println("====================================================");            
@@ -165,10 +169,12 @@ public class ProyectoVentas {
                                 pagosTarjeta = pagosTarjeta + 1;
                                 pagadoCon = 2;
                                 pagoMostrado = "Tarjeta";
-                            } else {
-                                System.out.println("Tarjeta rechazada. \n"
-                                        + "Intente de nuevo");
-                            }
+                            } if (aprobacion == 2){
+                                System.out.println("Tarjeta rechazada.");
+                                pagadoCon = 0;
+                            }else {
+                                System.out.println("Opcion invalida");
+                            }                           
                             break;
                         case 3:
                             System.out.println("La trasnsferencia fue recibida?");
@@ -179,34 +185,38 @@ public class ProyectoVentas {
                                 pagosTransferencia = pagosTransferencia + 1;
                                 pagadoCon = 3;
                                 pagoMostrado = "Transferencia";
-                            }else{
-                                System.out.println("Error de transferencia. \n"
-                                        + "Intente denuevo");
+                            }if (aprobacion == 2){
+                                System.out.println("Transferencia invalida.");
+                                pagadoCon = 0;
+                            }else {
+                                System.out.println("Opcion invalida");
                             }
                             break;
-                        default:
+                            default:
                             System.out.println("Ingrese una opcion valida");
-                            break;
+                            break;    
                     }
-                    //Actuaizacion de ventas mayores y menores
         System.out.println("====================================================");
         System.out.println("====================================================");
-                    ventasCompletadas = ventasCompletadas + 1;
-                    if (ventasCompletadas == 1){
-                        ventaMayor = total;
-                        ventaMenor = total;
+                    
+                    if (pagadoCon != 0){
+                       if (ventasCompletadas == 0) {
+                           ventaMayor = total;
+                           ventaMenor = total;
+                       }else{
+                           }if (total > ventaMayor){
+                                ventaMayor = total;
+                            }
+                            if (total < ventaMenor){
+                                ventaMenor = total;
+                            }
+                        ventasCompletadas = ventasCompletadas + 1;
+                        productosVendidos = productosVendidos + productosVenta;
+                        totalVendido = totalVendido + total;
                     }else {
-                        if (total > ventaMayor){
-                            ventaMayor = total;
-                        }
-                        if (total < ventaMenor){
-                            ventaMenor = total;
-                        }
+                        System.out.println("La venta fue cancelada.");
                     }
                     
-                    //actualizacion de contadores
-                    productosVendidos = productosVendidos + cantidadProd;
-                    totalVendido = totalVendido + total;
                     
                     //resumen
                     System.out.println("Resumen de venta.");
@@ -227,7 +237,7 @@ public class ProyectoVentas {
                     break;
                 case 2:
         System.out.println("====================================================");            
-                    System.out.println("Consulte su compra");
+                    System.out.println("Consulta de compras");
         System.out.println("====================================================");
                     
                     System.out.println("Ventas realizadas: " + ventasCompletadas);
@@ -251,6 +261,7 @@ public class ProyectoVentas {
                         System.out.println("Ventas totales: " + ventasCompletadas);
                         System.out.println("Cantidad de productos vendidos: " + productosVendidos);
                         System.out.println("Total de dinero por las ventas: " + totalVendido);
+                        System.out.println("El promedio de ventas es de: Q." + promedioVentas);
                         System.out.println("Ventas en efectivo: " + pagosEfectivo);
                         System.out.println("Ventas con tarjeta: " + pagosTarjeta);
                         System.out.println("Ventas por transferencia: " + pagosTransferencia);
