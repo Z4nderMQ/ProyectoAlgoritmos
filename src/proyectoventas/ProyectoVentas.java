@@ -169,7 +169,7 @@ public class ProyectoVentas {
                                 pagosTarjeta = pagosTarjeta + 1;
                                 pagadoCon = 2;
                                 pagoMostrado = "Tarjeta";
-                            } if (aprobacion == 2){
+                            } else if (aprobacion == 2){
                                 System.out.println("Tarjeta rechazada.");
                                 pagadoCon = 0;
                             }else {
@@ -185,7 +185,7 @@ public class ProyectoVentas {
                                 pagosTransferencia = pagosTransferencia + 1;
                                 pagadoCon = 3;
                                 pagoMostrado = "Transferencia";
-                            }if (aprobacion == 2){
+                            }else if (aprobacion == 2){
                                 System.out.println("Transferencia invalida.");
                                 pagadoCon = 0;
                             }else {
@@ -204,34 +204,35 @@ public class ProyectoVentas {
                            ventaMayor = total;
                            ventaMenor = total;
                        }else{
-                           }if (total > ventaMayor){
+                           if (total > ventaMayor){
                                 ventaMayor = total;
                             }
                             if (total < ventaMenor){
                                 ventaMenor = total;
                             }
+                       }
                         ventasCompletadas = ventasCompletadas + 1;
                         productosVendidos = productosVendidos + productosVenta;
                         totalVendido = totalVendido + total;
-                    }else {
-                        System.out.println("La venta fue cancelada.");
                     }
                     
-                    
                     //resumen
-                    System.out.println("Resumen de venta.");
-                    System.out.println("Cantidad de productos: " + cantidadProd);
-                    System.out.println("Subtotal a pagar: Q." + subtotalVenta);
-                    System.out.println("Descuento aplicado: " + descuento);
-                    System.out.println("IVA de la venta: Q." + iva);
-                    System.out.println("Total a pagar: Q." + total);
-                    System.out.println("Metodo de pago. " + metodoPago);
-                    if (pagadoCon == 1) {
+                    if (pagadoCon != 0) {
+                        System.out.println("Resumen de venta.");
+                        System.out.println("Cantidad de productos: " + cantidadProd);
+                        System.out.println("Subtotal a pagar: Q." + subtotalVenta);
+                        System.out.println("Descuento aplicado: " + descuento);
+                        System.out.println("IVA de la venta: Q." + iva);
+                        System.out.println("Total a pagar: Q." + total);
+                        if (pagadoCon == 1) {
                         System.out.println("la forma de pago fue: Efectivo");
                         System.out.println("El pago recibido fue de: Q" + efectivo);
                         System.out.println("El cambio entregado fue de: Q" + cambio);
                     }else {
                         System.out.println("El metodo de pago fue: " + pagoMostrado);
+                    }
+                    } else{
+                        System.out.println("La venta fue canselada");
                     }
         System.out.println("====================================================");                
                     break;
@@ -241,7 +242,7 @@ public class ProyectoVentas {
         System.out.println("====================================================");
                     
                     System.out.println("Ventas realizadas: " + ventasCompletadas);
-                    System.out.println("Cantidad de productos vendidios: " + productosVendidos);
+                    System.out.println("Cantidad de productos vendidos: " + productosVendidos);
                     System.out.println("El total vendido es de: Q." + totalVendido);
                     System.out.println("Ventas en efectivo: " + pagosEfectivo);
                     System.out.println("Ventas con tarjeta: " + pagosTarjeta);
